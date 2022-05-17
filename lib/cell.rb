@@ -30,5 +30,4 @@ class Cell
       false
     end
   end
-
 end

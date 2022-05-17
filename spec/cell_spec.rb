@@ -61,5 +61,4 @@ end
     cell.fire_upon
   expect(cell.fired_upon?).to eq(true)
   end
-
 end
