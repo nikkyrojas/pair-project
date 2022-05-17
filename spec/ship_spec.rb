@@ -27,16 +27,18 @@ RSpec.describe Ship do
     expect(cruiser.health).to eq(3)
   end
 
-  xit "has ship sunk?" do
+  it "has ship sunk?" do
     cruiser = Ship.new("Cruiser",3)
 
     expect(cruiser.sunk?).to eq(false)
   end
 
-  xit "has been hit" do
+  it "has been hit" do
     cruiser = Ship.new("Cruiser",3)
 
-    expect(cruiser.hit).to eq()
-
+    expect(cruiser.hit).to eq(2)
+    # binding.pry
   end
+
+  it
 end

@@ -1,3 +1,4 @@
+require 'pry'
 class Ship
   attr_reader :name, :length, :cruiser, :health
 
@@ -13,7 +14,11 @@ class Ship
     else
       return false
     end
+  end
 
+  def hit
+    binding.pry
+    @health = @health - 1
 
   end
 end
