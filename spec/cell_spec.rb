@@ -27,4 +27,10 @@ end
   expect(cell.empty?).to eq(true)
   end
 
+  it "places a ship in a cell" do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+  expect(cell.place_ship(cruiser)).to eq(cell.ship)
+  end
+
 end
