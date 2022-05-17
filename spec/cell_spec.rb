@@ -14,4 +14,10 @@ end
 
   expect(cell.coordinate).to eq("B4")
   end
+
+  it "does cell contain ship" do
+    cell = Cell.new("B4")
+
+  expect(cell.ship).to eq(nil)
+  end
 end
