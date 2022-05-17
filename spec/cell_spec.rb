@@ -7,6 +7,11 @@ RSpec.describe Cell do
     cell = Cell.new("B4")
 
   expect(cell).to be_a(Cell)
+end
 
+  it "coordinate will return value" do
+    cell = Cell.new("B4")
+
+  expect(cell.coordinate).to eq("B4")
   end
 end
