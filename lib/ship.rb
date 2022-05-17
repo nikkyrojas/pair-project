@@ -1,3 +1,4 @@
+require 'pry'
 class Ship
   attr_reader :name, :length, :cruiser, :health
 
@@ -6,4 +7,18 @@ class Ship
     @length = length
     @health = length
   end
-end 
+
+  def sunk?
+    if @health == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def hit
+
+    @health = @health - 1
+
+  end
+end
