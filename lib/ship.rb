@@ -6,5 +6,4 @@ class Ship
     @length = length
     @health = length
   end
-
-end
+end 
