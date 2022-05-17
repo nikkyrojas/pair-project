@@ -37,8 +37,15 @@ RSpec.describe Ship do
     cruiser = Ship.new("Cruiser",3)
 
     expect(cruiser.hit).to eq(2)
-    # binding.pry
+    expect(cruiser.hit).to eq(1)
   end
 
-  it
+  it "has sunk!" do
+    cruiser = Ship.new("Cruiser",3)
+
+    expect(cruiser.hit).to eq(2)
+    expect(cruiser.hit).to eq(1)
+    expect(cruiser.hit).to eq(0)
+    expect(cruiser.sunk?).to eq(true)
+  end
 end

@@ -17,7 +17,7 @@ class Ship
   end
 
   def hit
-    binding.pry
+
     @health = @health - 1
 
   end
