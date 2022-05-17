@@ -33,4 +33,11 @@ end
   expect(cell.place_ship(cruiser)).to eq(cell.ship)
   end
 
+  it "shows the ship in the cell" do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+  expect(cell.ship).to eq(cruiser)
+  end
+
 end
