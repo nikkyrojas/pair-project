@@ -19,4 +19,16 @@ class Cell
     @ship = boat
   end
 
+  def fire_upon
+    ship.hit
+  end
+
+  def fired_upon?
+    if ship.health < ship.max_health
+      true
+    else
+      false
+    end
+  end
+
 end

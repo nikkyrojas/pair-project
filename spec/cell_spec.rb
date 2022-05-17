@@ -54,4 +54,12 @@ end
   expect(cell.fired_upon?).to eq(false)
   end
 
+  it "tells us that a ship HAS been fired upon" do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    cell.fire_upon
+  expect(cell.fired_upon?).to eq(true)
+  end
+
 end
