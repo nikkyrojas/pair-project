@@ -36,4 +36,8 @@ class Cell
       return "."
     end
   end
+
+  def fire_upon
+
+  end
 end

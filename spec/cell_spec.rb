@@ -67,7 +67,7 @@ RSpec.describe Cell do
 
   expect(cell_1).to be_a(Cell)
   expect(cell_1.render).to eq(".")
-  # expect(cell_1.fire_upon).to eq(fire_upon?)
+  expect(cell_1.fire_upon).to eq(fire_upon?)
   # expect(cell_1.render).to eq("M")
   end
 
