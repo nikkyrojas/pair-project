@@ -30,7 +30,5 @@ class Cell
       false
     end
   end
-  # def
-  #
-  # end
+
 end

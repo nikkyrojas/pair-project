@@ -62,15 +62,26 @@ end
   expect(cell.fired_upon?).to eq(true)
   end
 
-  it "tells us cell 1 coordinate" do
+  it "gives cell_1 a coordinate" do
     cell_1 = Cell.new("B4")
-    
+
   expect(cell_1).to be_a(Cell)
   end
 
-  # it "text" do
-  #
-  # end
+  it "renders what is status of cell" do
+    cell_1 = Cell.new("B4")
+
+  expect(render).to eq(".")
+  end
+
+  it "gives cell_2 a coordinate" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+    cell.fire_upon
+
+  expect(cell_2).to be_a(Cell)
+  end
 
 
 end
