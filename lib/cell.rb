@@ -31,4 +31,9 @@ class Cell
     end
   end
 
+  def render
+    if empty? == true
+      return "."
+    end
+  end
 end
