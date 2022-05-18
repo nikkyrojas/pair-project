@@ -47,14 +47,14 @@ RSpec.describe Cell do
   expect(cell.empty?).to eq(false)
   end
 
-  it "tells us if ship has been fired upon" do
+  it "tells us if cell has been fired upon" do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
   expect(cell.fired_upon?).to eq(false)
   end
 
-  it "tells us that a ship HAS been fired upon" do
+  it "tells us that a cell HAS been fired upon" do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
     cell.place_ship(cruiser)
@@ -62,20 +62,22 @@ RSpec.describe Cell do
   expect(cell.fired_upon?).to eq(true)
   end
 
-  it "gives cell_1 a coordinate and renders status" do
+  it "gives cell_1 a coordinate" do
     cell_1 = Cell.new("B4")
 
   expect(cell_1).to be_a(Cell)
-  expect(cell_1.render).to eq(".")
-  expect(cell_1.fire_upon).to eq(fire_upon?)
-  # expect(cell_1.render).to eq("M")
   end
 
+  it " renders status" do
+    cell_1 = Cell.new("B4")
 
-  xit "gives cell_2 a coordinate and renders cell status" do
-    cell_2 = Cell.new("C3")
+  expect(cell_1.render).to eq(".")
+  end
 
-  expect(cell_2).to be_a(Cell)
-  expect(cell_2.render).to eq(".")
+  it " you fired upon empty cell" do
+    cell_1 = Cell.new("B4")
+    cell_1.fire_upon
+
+  expect(cell_1.render).to eq("M")
   end
 end

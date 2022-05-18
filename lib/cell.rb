@@ -20,11 +20,13 @@ class Cell
   end
 
   def fire_upon
-    ship.hit
+    if @ship == boat
+      ship.hit
+    end
   end
 
   def fired_upon?
-    if ship.health < ship.max_health
+    if
       true
     else
       false
@@ -34,10 +36,15 @@ class Cell
   def render
     if empty? == true
       return "."
+    elsif fire_upon? == true and @ship == boat
+      return "H"
+    elsif fire_upon? ==true and @ship != boat
+      return "M"
+    elsif fire_upon? == true and ship.health == 0
+      return "X"
+
     end
   end
 
-  def fire_upon
 
-  end
 end
