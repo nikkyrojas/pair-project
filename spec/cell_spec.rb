@@ -61,4 +61,16 @@ end
     cell.fire_upon
   expect(cell.fired_upon?).to eq(true)
   end
+
+  it "tells us cell 1 coordinate" do
+    cell_1 = Cell.new("B4")
+    
+  expect(cell_1).to be_a(Cell)
+  end
+
+  # it "text" do
+  #
+  # end
+
+
 end
