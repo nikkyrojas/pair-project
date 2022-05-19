@@ -6,6 +6,7 @@ class Cell
     @coordinate = coordinate
     @ship = nil
     @cell_fire_count = 0
+    @render_status = nil
   end
 
   def empty?
@@ -23,14 +24,14 @@ class Cell
   def fire_upon
     if empty? == true
       @cell_fire_count += 1
-       "M"
+      @render_status = "M"
     elsif empty? == false && ship.health > 1
       ship.hit
       @cell_fire_count += 1
-       "H"
+       @render_status = "H"
     elsif empty? == false && ship.health >= 0
       @cell_fire_count += 1
-       "X"
+      @render_status = "X"
     end
   end
 
@@ -43,13 +44,13 @@ class Cell
   end
 
   def render
-    if fire_upon == "M"
+    if @render_status == "M"
       return "M"
-    elsif fire_upon == "H"
+    elsif @render_status == "H"
       return "H"
-    elsif fire_upon == "X"
+    elsif @render_status == "X"
       return "X"
-    else
+    elsif @render_status == nil
         return "."
 
     end
