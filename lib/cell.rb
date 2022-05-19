@@ -1,4 +1,3 @@
-require './lib/ship'
 class Cell
   attr_reader :coordinate, :ship, :cell_fire_count, :render_status
   def initialize(coordinate)
