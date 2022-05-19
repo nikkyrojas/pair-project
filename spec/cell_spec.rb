@@ -1,6 +1,7 @@
 require './lib/cell'
 require './lib/ship'
 require 'rspec'
+require 'pry'
 
 RSpec.describe Cell do
   it "cell exist" do
@@ -87,17 +88,18 @@ RSpec.describe Cell do
   expect(cell).to be_a(Cell)
   end
 
-  it "coordinate will return value for cell 2" do
-    cell = Cell.new("C3")
+  it "gives cell_2 a coordinate" do
+    cell_2 = Cell.new("C3")
 
-  expect(cell.coordinate).to eq("C3")
+  expect(cell_2).to be_a(Cell)
   end
 
   it "shows the ship in cell 2" do
-    cell = Cell.new("C3")
+    cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
-    cell.place_ship(cruiser)
-  expect(cell.ship).to eq(cruiser)
+    cell_2.place_ship(cruiser)
+  expect(cell_2.ship).to eq(cruiser)
+
   end
 
 end
