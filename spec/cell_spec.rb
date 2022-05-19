@@ -82,7 +82,39 @@ RSpec.describe Cell do
   expect(cell_1.render).to eq("M")
   end
 
-  it "has it sunk?" do
+
+  it "cell 2 exist" do
+    cell = Cell.new("C3")
+
+  expect(cell).to be_a(Cell)
+  end
+
+  it "gives cell_2 a coordinate" do
+    cell_2 = Cell.new("C3")
+
+  expect(cell_2).to be_a(Cell)
+  end
+
+  it "shows the ship in cell 2" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+  expect(cell_2.ship).to eq(cruiser)
+  end
+
+  it " renders status of cell 2" do
+    cell_2 = Cell.new("C3")
+
+  expect(cell_2.render).to eq(".")
+  end
+
+  it "does cell have a ship?" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+  expect(cell_2.render(true)).to eq("S")
+    
+      it "has it sunk?" do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
@@ -103,5 +135,6 @@ RSpec.describe Cell do
     cruiser.hit
     cruiser.hit
     expect(cell_2.render).to eq("X")
+
   end
 end
