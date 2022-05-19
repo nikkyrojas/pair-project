@@ -28,8 +28,9 @@ class Cell
     elsif empty? == false && ship.health > 1
       ship.hit
       @cell_fire_count += 1
-       @render_status = "H"
-    elsif empty? == false && ship.health >= 0
+      @render_status = "H"
+    elsif empty? == false && ship.health == 1
+      ship.hit
       @cell_fire_count += 1
       @render_status = "X"
     end
