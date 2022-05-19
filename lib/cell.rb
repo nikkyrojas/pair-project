@@ -5,6 +5,7 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
+    @cell_fire_count = 0
   end
 
   def empty?
@@ -20,28 +21,36 @@ class Cell
   end
 
   def fire_upon
-    if @ship == boat
+    if empty? == true
+      @cell_fire_count += 1
+       "M"
+    elsif empty? == false && ship.health > 1
       ship.hit
+      @cell_fire_count += 1
+       "H"
+    elsif empty? == false && ship.health >= 0
+      @cell_fire_count += 1
+       "X"
     end
   end
 
   def fired_upon?
-    if
-      true
-    else
+    if @cell_fire_count == 0
       false
+    elsif @cell_fire_count > 0
+      true
     end
   end
 
   def render
-    if empty? == true
-      return "."
-    elsif fire_upon? == true and @ship == boat
-      return "H"
-    elsif fire_upon? ==true and @ship != boat
+    if fire_upon == "M"
       return "M"
-    elsif fire_upon? == true and ship.health == 0
+    elsif fire_upon == "H"
+      return "H"
+    elsif fire_upon == "X"
       return "X"
+    else
+        return "."
 
     end
   end
