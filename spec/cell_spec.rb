@@ -87,10 +87,17 @@ RSpec.describe Cell do
   expect(cell).to be_a(Cell)
   end
 
-  it "coordinate will return value" do
+  it "coordinate will return value for cell 2" do
     cell = Cell.new("C3")
 
   expect(cell.coordinate).to eq("C3")
+  end
+
+  it "shows the ship in cell 2" do
+    cell = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell.place_ship(cruiser)
+  expect(cell.ship).to eq(cruiser)
   end
 
 end
