@@ -29,12 +29,9 @@ class Cell
       ship.hit
       @cell_fire_count += 1
        @render_status = "H"
-    elsif empty? == false && ship.health > 0
+    elsif empty? == false && ship.health >= 0
       @cell_fire_count += 1
       @render_status = "X"
-    # elsif empty == false && ship.health == 0
-    #   @cell_fire_count += 1
-    #   @render_status = true
     end
   end
 
@@ -46,17 +43,17 @@ class Cell
     end
   end
 
-  def render
+  def render(optional = nil)
     if @render_status == "M"
       return "M"
     elsif @render_status == "H"
       return "H"
     elsif @render_status == "X"
       return "X"
+    elsif optional == true && empty? == false && fired_upon? == false
+      return "S"
     elsif @render_status == nil
       return "."
-    # elsif @render_status == true
-    #   return "S"
     end
 
   end
