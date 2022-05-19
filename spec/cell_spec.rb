@@ -99,7 +99,12 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
   expect(cell_2.ship).to eq(cruiser)
+  end
 
+  it " renders status of cell 2" do
+    cell_2 = Cell.new("C3")
+
+  expect(cell_2.render).to eq(".")
   end
 
 end
