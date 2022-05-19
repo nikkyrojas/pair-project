@@ -87,6 +87,10 @@ RSpec.describe Cell do
   expect(cell).to be_a(Cell)
   end
 
+  it "coordinate will return value" do
+    cell = Cell.new("C3")
 
+  expect(cell.coordinate).to eq("C3")
+  end
 
 end
