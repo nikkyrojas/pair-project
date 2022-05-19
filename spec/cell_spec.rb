@@ -82,6 +82,7 @@ RSpec.describe Cell do
   expect(cell_1.render).to eq("M")
   end
 
+
   it "cell 2 exist" do
     cell = Cell.new("C3")
 
@@ -112,5 +113,28 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
   expect(cell_2.render(true)).to eq("S")
+    
+      it "has it sunk?" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+
+    expect(cruiser.sunk?).to eq(false)
+    cruiser.hit
+    cruiser.hit
+    expect(cruiser.sunk?).to eq(true)
+  end
+
+  it "what is status of cell" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    binding.pry
+    cruiser.hit
+    cruiser.hit
+    expect(cell_2.render).to eq("X")
+
   end
 end
