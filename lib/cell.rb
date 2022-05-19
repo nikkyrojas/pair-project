@@ -43,17 +43,19 @@ class Cell
     end
   end
 
-  def render
+  def render(optional = nil)
     if @render_status == "M"
       return "M"
     elsif @render_status == "H"
       return "H"
     elsif @render_status == "X"
       return "X"
+    elsif optional == true && empty? == false && fired_upon? == false
+      return "S"
     elsif @render_status == nil
-        return "."
-
+      return "."
     end
+
   end
 
 
