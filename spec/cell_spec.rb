@@ -54,6 +54,7 @@ RSpec.describe Cell do
   expect(cell.fired_upon?).to eq(false)
   end
 
+
   it "tells us that a cell HAS been fired upon" do
     cell = Cell.new("B4")
     cruiser = Ship.new("Cruiser", 3)
@@ -74,10 +75,9 @@ RSpec.describe Cell do
   expect(cell_1.render).to eq(".")
   end
 
-  it " you fired upon empty cell" do
+  it "you fired upon empty cell" do
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
-
   expect(cell_1.render).to eq("M")
   end
 end
