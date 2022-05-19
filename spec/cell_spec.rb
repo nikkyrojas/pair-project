@@ -80,4 +80,13 @@ RSpec.describe Cell do
     cell_1.fire_upon
   expect(cell_1.render).to eq("M")
   end
+
+  it "cell 2 exist" do
+    cell = Cell.new("C3")
+
+  expect(cell).to be_a(Cell)
+  end
+
+
+
 end
