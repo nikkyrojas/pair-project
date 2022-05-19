@@ -113,13 +113,13 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
   expect(cell_2.render(true)).to eq("S")
-  end
-
-  it "has it sunk?" do
+    
+      it "has it sunk?" do
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
     cell_2.fire_upon
+
     expect(cruiser.sunk?).to eq(false)
     cruiser.hit
     cruiser.hit
@@ -131,8 +131,10 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell_2.place_ship(cruiser)
     cell_2.fire_upon
+    binding.pry
     cruiser.hit
     cruiser.hit
     expect(cell_2.render).to eq("X")
-    end
+
   end
+end
