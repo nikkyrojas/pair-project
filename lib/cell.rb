@@ -56,7 +56,6 @@ class Cell
     elsif @render_status == nil
       return "."
     end
-
   end
 
 
