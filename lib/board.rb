@@ -26,10 +26,10 @@ class Board
     end
 
   def valid_placement?(ship, array_coordinates)
-    if ship.length == array_coordinates.count
+    if ship.length == array_coordinates.count ##LOOK AT "TOOLS FOR VALIDATION"                                                ##In iteraction pattern!
       true
     else
-      false 
+      false
     end
   end
 
