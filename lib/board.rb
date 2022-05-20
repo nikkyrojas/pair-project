@@ -25,4 +25,12 @@ class Board
     cells.has_key?(coordinate)
     end
 
+  def valid_placement?(ship, array_coordinates)
+    if ship.length == array_coordinates.count ##LOOK AT "TOOLS FOR VALIDATION"                                                ##In iteraction pattern!
+      true
+    else
+      false
+    end
+  end
+
   end
