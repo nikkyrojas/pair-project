@@ -65,6 +65,14 @@ RSpec.describe Board do
   expect(board.valid_placement?(submarine, ["C1", "C2"])).to eq(true)
   end
 
+  it "coordinates cannot be diagnol" do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["C2", "D3"])).to eq(false )
+  end
+
 
 
 
