@@ -29,6 +29,12 @@ class Board
     element.reverse
   end
 
+  def place(ship, cell_points)
+    cell_points.each do |cell_point|
+      @cells[cell_point].place_ship(ship)
+    end
+  end
+
 
   def valid_placement? (ship, array_coordinates)
     if ship.length == array_coordinates.count
