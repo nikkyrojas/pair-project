@@ -37,14 +37,14 @@ class Board
 
 
   def valid_placement? (ship, array_coordinates)
-    if ship.length == array_coordinates.count
+    if ship.length == array_coordinates.count #&& @render_status = "."
       the_keys = @cells.keys
       horizontal_validation = the_keys.each_cons(ship.length).to_a #["A1", "A2"..]..["D2", "D3", "D4"]
-      same_number = the_keys.map do |key|
+      flip_keys = the_keys.map do |key|
          reverse_element(key) #["1A, "2A", "3A"..]
        end
-       same_num_sorted = same_number.sort #["1A, "1B", "1C"..]
-       letter_first = same_num_sorted.map do |key| #this creates => ["A1", "B1", "C1"..]
+       flip_keys_sorted = flip_keys.sort #["1A, "1B", "1C"..]
+       letter_first = flip_keys_sorted.map do |key| #this creates => ["A1", "B1", "C1"..]
          reverse_element(key)
        end
        vertical_validation = letter_first.each_cons(ship.length).to_a
@@ -53,8 +53,10 @@ class Board
        else
          false
        end
-    elsif ship.length != array_coordinates.count
+    elsif ship.length != array_coordinates.count || place.includes?(ship)
       false
     end
   end
 end
+
+#if @cells has ship return false or if empty = true
