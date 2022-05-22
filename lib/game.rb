@@ -11,19 +11,24 @@ class Game
 
     start_game = gets
     if start_game.chomp == "p" or "P"
+
       computer_board = Board.new
       cruiser = Ship.new("Cruiser", 3)
+      shuffle_coordinates = nil
+
+      loop do
+          shuffle_coordinates = @cells.keys.sample(3)
+
+          break if computer_board.valid_placement?(cruiser, shuffle_coordinates) == true
+      end
 
 
-      shuffle_coordinates = @cells.keys.sample(3)
-        until
+    end #this end is for the if start_game == p
 
-        end
-
-      if computer_board.valid_placement?(cruiser, shuffle_coordinates) == true
-
-      computer_board.place(cruiser, @cells.keys.sample(3))
-      computer_board.render
+      # if computer_board.valid_placement?(cruiser, shuffle_coordinates) == true
+      #
+      # computer_board.place(cruiser, @cells.keys.sample(3))
+      # computer_board.render
 
 
       player_board = Board.new
