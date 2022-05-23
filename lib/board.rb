@@ -1,6 +1,7 @@
 class Board
-  attr_reader :cells, :board_width, :board_height
+  attr_reader :cells, :board_width, :board_height, :valid_coord_array
   def initialize(board_height = 4, board_width = 4)
+    @valid_coord_array = []
     @cells = {}
     @board_height = board_height
     @board_width = board_width
@@ -40,6 +41,7 @@ class Board
     end
   end
 
+
   def valid_placement? (ship, array_coordinates)
     if ship.length != array_coordinates.count
       false
@@ -56,12 +58,16 @@ class Board
           horizontal_validation = the_keys.each_cons(ship.length).to_a #["A1", "A2"..]..["D2", "D3", "D4"]
           flip_keys = the_keys.map do |key|
              reverse_element(key) #["1A, "2A", "3A"..]
+
            end
            flip_keys_sorted = flip_keys.sort #["1A, "1B", "1C"..]
            letter_first = flip_keys_sorted.map do |key| #this creates => ["A1", "B1", "C1"..]
              reverse_element(key)
            end
            vertical_validation = letter_first.each_cons(ship.length).to_a
+
+           @valid_coord_array = horizontal_validation + vertical_validation
+           binding.pry
 
            if horizontal_validation.include?(array_coordinates) || vertical_validation.include?(array_coordinates)
              true
