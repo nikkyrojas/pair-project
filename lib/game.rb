@@ -17,7 +17,7 @@ class Game
       shuffle_coordinates = nil
 
       loop do
-          shuffle_coordinates = @cells.keys.sample(3)
+          shuffle_coordinates = @valid_coord_array.keys.sample(3)
 
           break if computer_board.valid_placement?(cruiser, shuffle_coordinates) == true
       end
