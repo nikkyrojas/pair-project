@@ -65,11 +65,11 @@ class Board
              reverse_element(key)
            end
            vertical_validation = letter_first.each_cons(ship.length).to_a
+           combined_arrays= horizontal_validation + vertical_validation
 
-           @valid_coord_array = horizontal_validation + vertical_validation
-           binding.pry
-
-           if horizontal_validation.include?(array_coordinates) || vertical_validation.include?(array_coordinates)
+           invalid_arrays = [["A3", "A4", "B1"],["A4", "B1", "B2"],["B3", "B4", "C1"],["B4", "C1", "C2"],["C3", "C4", "D1"],["C4", "D1", "D2"],["C1", "D1", "A2"],["C2", "D2", "A3"],["C3", "D3", "A4"],["A4", "B1"],["B4", "C1"],["C4","D1"],["D1","A2"], ["D2","A3"],["D3", "A4"]]
+           @valid_coord_array = combined_arrays - invalid_arrays
+           if @valid_coord_array.include?(array_coordinates)
              true
            else
              false
