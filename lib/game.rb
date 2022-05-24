@@ -70,7 +70,7 @@ class Game
       player_ship_placement
       computer_and_player_screen
       player_shot
-
+      pc_shot
 
     elsif user_input == "q"
       puts "Thanks for protecting these here seas!"
@@ -140,21 +140,24 @@ class Game
   def player_shot
     puts "Enter the coordinate for your shot"
     player_shot_input = gets.upcase.chomp
-    if pc_board.valid_coordinate?(player_shot)
-      pc_board.cells[player_shot].fire_upon
+    if pc_board.valid_coordinate?(player_shot_input)
+      pc_board.cells[player_shot_input].fire_upon
     else
       loop do
         puts "Please enter a valid coordinate:"
         player_shot_input = gets.upcase.chomp
-        break if player_shot_input.valid_coordinate?(player_shot)
+        break if pc_board.valid_coordinate?(player_shot_input)
       end
       pc_board.cells[player_shot].fire_upon
     end
   end
 
   def pc_shot
+    loop do
     random_coordinate = player_board.cells.sample
-    player_board.cells(random_coordinate).fire_upon
+    break if player_board.cells(random_coordinate).fire_upon? == false 
+      player_board.cells[random_coordinate].fire_upon
+    end
   end
 
 end
