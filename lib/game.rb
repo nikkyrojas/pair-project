@@ -96,6 +96,8 @@ class Game
         player_cruiser_input = gets.upcase.chomp.split
         break if player_board.valid_placement?(player_cruiser, player_cruiser_input) == true
       end
+      player_board.place(player_cruiser, player_cruiser_input)
+      puts player_board.render(true)
     else
       player_board.place(player_cruiser, player_cruiser_input)
       puts player_board.render(true)
