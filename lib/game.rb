@@ -79,12 +79,23 @@ class Game
   end
 
   def player_ship_placement
+    player_board = Board.new
+    player_cruiser = Ship.new("Cruiser", 3)
+    player_submarine = Ship.new("Submarine", 2)
+
     puts "I have laid out my ships on the grid. \n" +
           "You now need to lay out your two ships. \n" +
           "The Cruiser is three units long and the Submarine is two units long. \n"
 
-    puts "#{board.create_the_board}"
+    puts player_board.render
     puts "Enter the square for the Cruiser (3 spaces):"
+    player_cruiser_input = gets.upcase.chomp.split
+    if player_board.valid_placement?(player_cruiser, player_cruiser_input) != true
+      "Those are invalid coordinates. Please try again:"
+    else
+      player_board.place(player_cruiser, player_cruiser_input)
+      puts player_board.render(true)
+    end
 
   end
 
