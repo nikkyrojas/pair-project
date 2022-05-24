@@ -140,8 +140,15 @@ class Game
   def player_shot
     puts "Enter the coordinate for your shot"
     player_shot_input = gets.upcase.chomp
-    if pc_board.valid_coordinate?(player_shot_input)
+    if pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == false
       pc_board.cells[player_shot_input].fire_upon
+    elsif pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == true
+      loop do
+        puts "You have already fired upon that coordinate. Please enter a different coordinate:"
+        player_shot_input = gets.upcase.chomp
+        break if pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == false
+      end
+      pc_board.cells[player_shot].fire_upon
     else
       loop do
         puts "Please enter a valid coordinate:"
@@ -155,7 +162,7 @@ class Game
   def pc_shot
     loop do
     random_coordinate = player_board.cells.sample
-    break if player_board.cells(random_coordinate).fire_upon? == false 
+    break if player_board.cells(random_coordinate).fire_upon? == false
       player_board.cells[random_coordinate].fire_upon
     end
   end
