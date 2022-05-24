@@ -1,7 +1,47 @@
 class Board
   attr_reader :cells, :board_width, :board_height, :valid_coord_array
   def initialize(board_height = 4, board_width = 4)
-    @valid_coord_array = []
+    @hard_valid_cruiser =[["A1", "A2", "A3"],
+                          ["A2", "A3", "A4"],
+                          ["B1", "B2", "B3"],
+                          ["B2", "B3", "B4"],
+                          ["C1", "C2", "C3"],
+                          ["C2", "C3", "C4"],
+                          ["D1", "D2", "D3"],
+                          ["D2", "D3", "D4"],
+                          ["A1", "B1", "C1"],
+                          ["B1", "C1", "D1"],
+                          ["A2", "B2", "C2"],
+                          ["B2", "C2", "D2"],
+                          ["A3", "B3", "C3"],
+                          ["B3", "C3", "D3"],
+                          ["A4", "B4", "C4"],
+                          ["B4", "C4", "D4"]]
+    @hard_valid_submarine = [["A1", "A2"],
+                            ["A2", "A3"],
+                            ["A3", "A4"],
+                            ["B1", "B2"],
+                            ["B2", "B3"],
+                            ["B3", "B4"],
+                            ["C1", "C2"],
+                            ["C2", "C3"],
+                            ["C3", "C4"],
+                            ["D1", "D2"],
+                            ["D2", "D3"],
+                            ["D3", "D4"],
+                            ["A1", "B1"],
+                            ["B1", "C1"],
+                            ["C1", "D1"],
+                            ["A2", "B2"],
+                            ["B2", "C2"],
+                            ["C2", "D2"],
+                            ["A3", "B3"],
+                            ["B3", "C3"],
+                            ["C3", "D3"],
+                            ["A4", "B4"],
+                            ["B4", "C4"],
+                            ["C4", "D4"]]
+    @valid_coord_array = @hard_valid_cruiser + @hard_valid_submarine
     @cells = {}
     @board_height = board_height
     @board_width = board_width
@@ -45,9 +85,9 @@ class Board
   def valid_placement? (ship, array_coordinates)
     if ship.length != array_coordinates.count
       false
-    elsif ship.length == array_coordinates.count && @cells.include?(array_coordinates[0]) == false || @cells.include?(array_coordinates[1]) == false || @cells.include?(array_coordinates[2]) == false
+    elsif ship.length == array_coordinates.count && @valid_coord_array.include?(array_coordinates) == false
       false
-    elsif ship.length == array_coordinates.count && @cells.include?(array_coordinates[0]) == true && @cells.include?(array_coordinates[1]) == true && @cells.include?(array_coordinates[2]) == true
+    elsif ship.length == array_coordinates.count && @valid_coord_array.include?(array_coordinates) == true
       is_cell_empty = array_coordinates.map do |array_coordinate|
       @cells[array_coordinate].empty?
       end
@@ -70,7 +110,7 @@ class Board
            combined_arrays= horizontal_validation + vertical_validation
 
            invalid_arrays = [["A3", "A4", "B1"],["A4", "B1", "B2"],["B3", "B4", "C1"],["B4", "C1", "C2"],["C3", "C4", "D1"],["C4", "D1", "D2"],["C1", "D1", "A2"],["C2", "D2", "A3"],["C3", "D3", "A4"],["A4", "B1"],["B4", "C1"],["C4","D1"],["D1","A2"], ["D2","A3"],["D3", "A4"]]
-           @valid_coord_array = combined_arrays - invalid_arrays
+           final_valid_arrays = combined_arrays - invalid_arrays
            if @valid_coord_array.include?(array_coordinates)
              true
            else
