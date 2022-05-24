@@ -45,7 +45,9 @@ class Board
   def valid_placement? (ship, array_coordinates)
     if ship.length != array_coordinates.count
       false
-    elsif ship.length == array_coordinates.count
+    elsif ship.length == array_coordinates.count && @cells.include?(array_coordinates[0]) == false || @cells.include?(array_coordinates[1]) == false || @cells.include?(array_coordinates[2]) == false
+      false
+    elsif ship.length == array_coordinates.count && @cells.include?(array_coordinates[0]) == true && @cells.include?(array_coordinates[1]) == true && @cells.include?(array_coordinates[2]) == true
       is_cell_empty = array_coordinates.map do |array_coordinate|
       @cells[array_coordinate].empty?
       end
