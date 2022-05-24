@@ -106,14 +106,17 @@ class Game
     puts "Next please enter the squares for the Submarine (2 spaces): \n"
     player_submarine_input = gets.upcase.chomp.split
     if player_board.valid_placement?(player_submarine, player_submarine_input) == false
-      puts "Those are invalid coordinates. Please try again:"
+      loop do
+        puts "Those are invalid coordinates. Please try again:"
+        player_submarine_input = gets.upcase.chomp.split
+        break if player_board.valid_placement?(player_submarine, player_submarine_input) == true
+      end
+      player_board.place(player_submarine, player_submarine_input)
+      puts player_board.render(true)
     else
       player_board.place(player_submarine, player_submarine_input)
       puts player_board.render(true)
     end
+  end #the end for player ship placement method
 
   end
-
-
-
-end
