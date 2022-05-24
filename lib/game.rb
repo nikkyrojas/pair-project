@@ -9,10 +9,12 @@ class Game
     @pc_board = nil
     @pc_cruiser = nil
     @pc_submarine = nil
+    @pc_shot_random_coordinate = nil
 
     @player_board = nil
     @player_cruiser = nil
     @player_submarine = nil
+    @player_shot_input = nil
 
     @hard_valid_cruiser =[["A1", "A2", "A3"],
                           ["A2", "A3", "A4"],
@@ -71,6 +73,10 @@ class Game
       computer_and_player_screen
       player_shot
       pc_shot
+      player_miss_hit_sunk_response
+      pc_miss_hit_sunk_response
+
+
 
     elsif user_input == "q"
       puts "Thanks for protecting these here seas!"
@@ -132,28 +138,28 @@ class Game
 
   def computer_and_player_screen
     puts "=============COMPUTER BOARD============= \n" +
-         "#{@player_board.render(true)} \n" +
+         "#{@pc_board.render} \n" +
          "==============PLAYER BOARD============== \n" +
-         "#{@pc_board.render}"
+         "#{@player_board.render(true)}"
   end
 
   def player_shot
-    puts "Enter the coordinate for your shot"
+    puts "Enter the coordinate for your shot:"
     player_shot_input = gets.upcase.chomp
-    if pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == false
+    if pc_board.valid_coordinate?(player_shot_input) == true && pc_board.cells(player_shot_input).fire_upon? == false
       pc_board.cells[player_shot_input].fire_upon
-    elsif pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == true
+    elsif pc_board.valid_coordinate?(player_shot_input) == true && pc_board.cells(player_shot_input).fire_upon? == true
       loop do
         puts "You have already fired upon that coordinate. Please enter a different coordinate:"
         player_shot_input = gets.upcase.chomp
-        break if pc_board.valid_coordinate?(player_shot_input) && pc_board.cells(player_shot_input).fire_upon? == false
+        break if pc_board.valid_coordinate?(player_shot_input) == true && pc_board.cells(player_shot_input).fire_upon? == false
       end
       pc_board.cells[player_shot].fire_upon
     else
       loop do
         puts "Please enter a valid coordinate:"
         player_shot_input = gets.upcase.chomp
-        break if pc_board.valid_coordinate?(player_shot_input)
+        break if pc_board.valid_coordinate?(player_shot_input) == true
       end
       pc_board.cells[player_shot].fire_upon
     end
@@ -161,10 +167,30 @@ class Game
 
   def pc_shot
     loop do
-    random_coordinate = player_board.cells.sample
+    pc_shot_random_coordinate = player_board.cells.sample
     break if player_board.cells(random_coordinate).fire_upon? == false
       player_board.cells[random_coordinate].fire_upon
     end
+  end
+
+  def player_miss_hit_sunk_response
+    if pc_board.cells[@player_shot_input].render_status == "S"
+       puts "Your shot on #{@player_shot_input} sunk their ship"
+     elsif pc_board.cells[@player_shot_input].render_status == "M"
+       puts "Your shot on #{@player_shot_input} was a miss"
+     elsif pc_board.cells[@player_shot_input].render_status == "H"
+       puts "Your shot on #{@player_shot_input} was a hit"
+     end
+  end
+
+  def pc_miss_hit_sunk_response
+    if player_board.cells[@pc_shot_random_coordinate].render_status == "S"
+       puts "My shot on #{@pc_shot_random_coordinate} sunk your ship"
+     elsif player_board.cells[@pc_shot_random_coordinate].render_status == "M"
+       puts "My shot on #{@pc_shot_random_coordinate} was a miss"
+     elsif player_board.cells[@pc_shot_random_coordinate].render_status == "H"
+       puts "My shot on #{@pc_shot_random_coordinate} was a hit"
+     end
   end
 
 end
