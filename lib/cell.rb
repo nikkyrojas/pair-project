@@ -16,12 +16,20 @@ class Cell
   def place_ship(boat)
     @ship = boat
   end
+
   def fire_upon
     @cell_fire_count += 1
-    if empty? == false
+    if empty? == false && @render_status == "S"
       ship.hit
+      @render_status = "H"
+    elsif empty? == false && @render_status == "S" && ship.health == 1
+      ship.hit
+      @render_status = "X"
+    elsif @render_status == "."
+      @render_status = "M"
     end
   end
+
   def fired_upon?
     if @cell_fire_count == 0
       false
