@@ -84,7 +84,7 @@ class Game
     player_submarine = Ship.new("Submarine", 2)
 
     puts "I have laid out my ships on the grid. \n" +
-          "You now need to lay out your two ships. \n" +
+          "You now need to lay out your two ships. (example: a1 a2 a3) \n" +
           "The Cruiser is three units long and the Submarine is two units long. \n"
 
     puts player_board.render
@@ -94,6 +94,14 @@ class Game
       "Those are invalid coordinates. Please try again:"
     else
       player_board.place(player_cruiser, player_cruiser_input)
+      puts player_board.render(true)
+    end
+    puts "Next please enter the squares for the Submarine (2 spaces): \n"
+    player_submarine_input = gets.upcase.chomp.split
+    if player_board.valid_placement?(player_submarine, player_submarine_input) != true
+      "Those are invalid coordinates. Please try again:"
+    else
+      player_board.place(player_submarine, player_submarine_input)
       puts player_board.render(true)
     end
 
