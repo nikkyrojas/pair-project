@@ -108,8 +108,10 @@ RSpec.describe Cell do
     cell_2.place_ship(cruiser)
     cell_2.fire_upon
     expect(cruiser.sunk?).to eq(false)
-    cruiser.hit
-    cruiser.hit
+    cell_2.fire_upon
+    cell_2.fire_upon
+    # cruiser.hit
+    # cruiser.hit
     expect(cruiser.sunk?).to eq(true)
   end
 
@@ -121,5 +123,45 @@ RSpec.describe Cell do
     cruiser.hit
     cruiser.hit
     expect(cell_2.render).to eq("X")
-    end
   end
+
+  describe '#render'do
+      let(:cell) { Cell.new("B4") }
+
+      cruiser = Ship.new("Cruiser", 3)
+
+      it 'should accept an optional boolean argument' do
+        expect { cell.render }.not_to raise_error
+        expect { cell.render(true) }.not_to raise_error
+      end
+
+      it 'returns . if the ship has not been fired upon and no argument passed to render' do
+        cell.place_ship(cruiser)
+        expect(cell.render).to eq(".")
+      end
+      
+      it 'returns S if the cell has not been fired upon, the cell contains a ship, and true has been passed as an argument to render' do
+        cell.place_ship(cruiser)
+        expect(cell.render(true)).to eq("S")
+      end
+
+      it 'returns M if the cell has been fired upon, the cell does not contain a ship, and no argument passed to render' do
+        cell.fire_upon
+        expect(cell.render).to eq("M")
+      end
+
+      it 'returns H if the cell has been fired upon, the cell contains a ship, and no argument passed to render' do
+        cell.place_ship(cruiser)
+        cell.fire_upon
+        expect(cell.render).to eq("H")
+      end
+
+      it 'returns X if the cell has been fired upon, the cell contains a ship, no argument passed to render, and the ship has been sunk' do
+        cell.place_ship(cruiser)
+        cell.fire_upon
+        cell.fire_upon
+        cell.fire_upon
+        expect(cell.render).to eq("X")
+      end
+    end
+end
