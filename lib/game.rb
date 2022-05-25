@@ -96,9 +96,17 @@ class Game
     @pc_cruiser = Ship.new("Cruiser", 3)
     @pc_submarine = Ship.new("Submarine", 2)
 
-    @pc_board.place(@pc_cruiser, @hard_valid_cruiser.sample)
-    @pc_board.place(@pc_submarine, @hard_valid_submarine.sample)
-  end
+    pc_cruiser_placement_choice = @hard_valid_cruiser.sample
+    @pc_board.place(@pc_cruiser, pc_cruiser_placement_choice)
+
+
+    pc_submarine_placement_choice = nil
+      loop do
+        pc_submarine_placement_choice = @hard_valid_submarine.sample
+        break if @pc_board.valid_placement?(@pc_submarine, pc_submarine_placement_choice) == true
+      end
+      @pc_board.place(@pc_submarine, @hard_valid_submarine.sample)
+    end
 
   def player_ship_placement
     @player_board = Board.new

@@ -25,7 +25,10 @@ class Cell
     elsif empty? == false && @render_status == "S" && ship.health == 1
       ship.hit
       @render_status = "X"
-    elsif @render_status == "."
+    elsif @render_status == "." && empty? == false
+      ship.hit
+      @render_status = "H"
+    elsif @render_status == "." && empty? == true
       @render_status = "M"
     end
   end
