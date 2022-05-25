@@ -38,8 +38,15 @@ class Cell
     end
   end
   def render(optional = false)
-    if optional == true && empty? == false
+    if optional == true && empty? == false && fired_upon? == false
       @render_status = "S"
+    elsif optional == true && empty? == false && fired_upon? == true
+      @render_status = "H"
+        if ship.sunk? == true
+          @render_status = "X"
+        else
+          @render_status = "H"
+        end
     elsif empty? == true && fired_upon? == true
       @render_status = "M"
     elsif empty? == false && fired_upon? == true && ship.sunk? == false

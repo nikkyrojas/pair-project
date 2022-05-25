@@ -80,7 +80,7 @@ class Game
         if @player_cruiser.sunk? == true && @player_submarine.sunk? == true
           puts "I won!"
         elsif
-          "You won!"
+          puts "You won!"
         end
       elsif user_input == "q"
         puts "Thanks for protecting these here seas!"
@@ -88,9 +88,8 @@ class Game
         puts "Error: please copy and paste the following link into your web browser for solution: https://www.youtube.com/watch?v=34Ig3X59_qA"
       end
       break if user_input == "q"
+    end
   end
-end
-end
 
   def create_pc_ship_placement
     @pc_board = Board.new
@@ -180,11 +179,11 @@ end
   end
 
   def player_miss_hit_sunk_response
-    if @pc_board.cells[@player_shot_input].render_status == "X"
+    if @pc_board.cells[@player_shot_input].render == "X"
        puts "Your shot on #{@player_shot_input} sunk their ship."
-     elsif @pc_board.cells[@player_shot_input].render_status == "M"
+     elsif @pc_board.cells[@player_shot_input].render == "M"
        puts "Your shot on #{@player_shot_input} was a miss."
-     elsif @pc_board.cells[@player_shot_input].render_status == "H"
+     elsif @pc_board.cells[@player_shot_input].render == "H"
        puts "Your shot on #{@player_shot_input} was a hit."
      else
        puts "ERROR: Render status was #{@pc_board.cells[@player_shot_input].render_status}"
@@ -192,11 +191,11 @@ end
   end
 
   def pc_miss_hit_sunk_response
-    if @player_board.cells[@pc_shot_random_coordinate].render_status == "X"
+    if @player_board.cells[@pc_shot_random_coordinate].render == "X"
        puts "My shot on #{@pc_shot_random_coordinate} sunk your ship."
-     elsif @player_board.cells[@pc_shot_random_coordinate].render_status == "M"
+     elsif @player_board.cells[@pc_shot_random_coordinate].render == "M"
        puts "My shot on #{@pc_shot_random_coordinate} was a miss."
-     elsif @player_board.cells[@pc_shot_random_coordinate].render_status == "H"
+     elsif @player_board.cells[@pc_shot_random_coordinate].render == "H"
        puts "My shot on #{@pc_shot_random_coordinate} was a hit."
      else
        puts "ERROR: Render status was #{@player_board.cells[@pc_shot_random_coordinate].render_status}"
