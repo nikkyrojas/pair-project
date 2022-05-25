@@ -59,31 +59,37 @@ class Game
   end
 
   def start_game
+    loop do
+      puts "Start Game!"
+      puts "Welcome to Battleship!"
+      puts "Enter p to play. Enter q to quit."
 
-    puts "Start Game!"
-    puts "Welcome to Battleship!"
-    puts "Enter p to play. Enter q to quit."
+      user_input = gets.downcase.chomp #changed variable from start_game to avoid using similiar naming as the method
 
-    user_input = gets.downcase.chomp #changed variable from start_game to avoid using similiar naming as the method
-
-    if user_input == "p"
-      create_pc_ship_placement
-      player_ship_placement
-      computer_and_player_screen
-      player_shot
-      pc_shot
-      player_miss_hit_sunk_response
-      pc_miss_hit_sunk_response
-
-
-
-    elsif user_input == "q"
-      puts "Thanks for protecting these here seas!"
-    else
-      puts "Error: please copy and paste the following link into your web browser for solution: https://www.youtube.com/watch?v=34Ig3X59_qA"
+      if user_input == "p"
+          create_pc_ship_placement
+          player_ship_placement
+          loop do
+            computer_and_player_screen
+            player_shot
+            pc_shot
+            player_miss_hit_sunk_response
+            pc_miss_hit_sunk_response
+          break if (@player_cruiser.sunk? == true && @player_submarine.sunk? == true) || (@pc_cruiser.sunk? == true && @pc_submarine.sunk? == true)
+        end
+        if @player_cruiser.sunk? == true && @player_submarine.sunk? == true
+          puts "I won!"
+        elsif
+          puts "You won!"
+        end
+      elsif user_input == "q"
+        puts "Thanks for protecting these here seas!"
+      else
+        puts "Error: please copy and paste the following link into your web browser for solution: https://www.youtube.com/watch?v=34Ig3X59_qA"
+      end
+      break if user_input == "q"
     end
   end
-
 
   def create_pc_ship_placement
     @pc_board = Board.new
@@ -173,11 +179,11 @@ class Game
   end
 
   def player_miss_hit_sunk_response
-    if @pc_board.cells[@player_shot_input].render_status == "X"
+    if @pc_board.cells[@player_shot_input].render == "X"
        puts "Your shot on #{@player_shot_input} sunk their ship."
-     elsif @pc_board.cells[@player_shot_input].render_status == "M"
+     elsif @pc_board.cells[@player_shot_input].render == "M"
        puts "Your shot on #{@player_shot_input} was a miss."
-     elsif @pc_board.cells[@player_shot_input].render_status == "H"
+     elsif @pc_board.cells[@player_shot_input].render == "H"
        puts "Your shot on #{@player_shot_input} was a hit."
      else
        puts "ERROR: Render status was #{@pc_board.cells[@player_shot_input].render_status}"
@@ -185,11 +191,11 @@ class Game
   end
 
   def pc_miss_hit_sunk_response
-    if @player_board.cells[@pc_shot_random_coordinate].render_status == "X"
+    if @player_board.cells[@pc_shot_random_coordinate].render == "X"
        puts "My shot on #{@pc_shot_random_coordinate} sunk your ship."
-     elsif @player_board.cells[@pc_shot_random_coordinate].render_status == "M"
+     elsif @player_board.cells[@pc_shot_random_coordinate].render == "M"
        puts "My shot on #{@pc_shot_random_coordinate} was a miss."
-     elsif @player_board.cells[@pc_shot_random_coordinate].render_status == "H"
+     elsif @player_board.cells[@pc_shot_random_coordinate].render == "H"
        puts "My shot on #{@pc_shot_random_coordinate} was a hit."
      else
        puts "ERROR: Render status was #{@player_board.cells[@pc_shot_random_coordinate].render_status}"

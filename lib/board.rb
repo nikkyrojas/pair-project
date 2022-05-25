@@ -131,7 +131,7 @@ class Board
 
 
          output = "  #{first_line} \n" + #  1 2 3 4
-              "#{first_letter_line} #{@cells.values[0].render_status} " +
+              "#{first_letter_line} #{@cells.values[0].render} " +
               "#{@cells.values[1].render} " +
               "#{@cells.values[2].render} " +
               "#{@cells.values[3].render} \n" +
