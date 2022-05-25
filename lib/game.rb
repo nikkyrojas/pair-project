@@ -3,6 +3,8 @@ require './lib/board'
 require './lib/ship'
 require './lib/cell'
 
+require 'byebug'
+
 class Game
   def initialize
     @pc_board = nil
@@ -142,6 +144,8 @@ class Game
   end #the end for player ship placement method
 
   def computer_and_player_screen
+    # byebug
+
     puts "=============COMPUTER BOARD============= \n" +
          "#{@pc_board.render} \n" +
          "==============PLAYER BOARD============== \n" +
